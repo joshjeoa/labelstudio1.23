@@ -1,0 +1,54 @@
+title: 问答
+type: community
+group: Natural Language Processing
+order: 1
+image: /static/templates/question-answering.png
+details: |
+  <h1>Select an answer from text</h1>
+  <dl>
+    <dt>Industry Applications</dt>
+    <dd>customer support automation, educational assessment, research assistance, legal document search, medical diagnosis support, technical documentation, FAQ automation, knowledge base search, compliance queries, scientific literature search, patent research, insurance claims processing</dd>
+    <dt>Associated Models</dt>
+    <dd>BERT-QA, RoBERTa, SQuAD, reading comprehension, extractive QA, generative QA</dd>
+    <dt>Domain Terminology</dt>
+    <dd>NLP, span extraction, machine reading, information retrieval, passage retrieval, answer extraction</dd>
+  </dl>
+config: |
+  <View>
+    <Header value="请阅读文章" />
+    <Text name="text" value="$text" granularity="word"/>
+    <Header value="选择回答以下问题的文本片段："/>
+    <Text name="question" value="$question"/>
+
+    <Labels name="answer" toName="text">
+      <Label value="回答" maxUsage="1" background="red"/>
+    </Labels>
+
+  </View>
+
+  <!-- {
+  "data": {
+    "text": "无法逃脱的区域的边界被称为事件视界。尽管事件视界对穿过它的物体命运和环境有着巨大的影响，但根据义相对论，它在局部上没有可探测的特征。[4] 在许多方面，黑洞的行为就像一个理想黑体，因为它不反射任何光。[5][] 此外，弯曲时空中的量子场论预言事件视界会发射霍金辐射，其光谱与温度与质量成反比的黑体相同对于恒星质量的黑洞，这种温度大约在十亿分之一开尔文的量级，这使得直接观测它在本质上是不可能的。",
+    "question": "如何探测黑洞？"
+  },
+  "annotations": [
+    {"result": [
+      {
+          "value": {
+              "start": 423,
+              "end": 553,
+              "text": "事件视界发射霍金辐射，其光谱与温度与其质量成反比的黑体相同。",
+              "labels": [
+                  "Answer"
+              ]
+          },
+          "id": "b0wKkdnnRc",
+          "from_name": "answer",
+          "to_name": "text",
+          "type": "labels"
+      }
+      ]
+    }]
+  }
+  -->
+

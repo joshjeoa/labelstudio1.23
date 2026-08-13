@@ -1,0 +1,126 @@
+{
+  "editor_preview": {
+    "TextRaw": "示例：您的文本将显示在这里。",
+    "TextUrl": "https://htx-pub.s3.amazonaws.com/example.txt",
+    "HyperText": "<div style=\"max-width: 750px\"><div style=\"clear: both\"><div style=\"float: right; display: inline-block; border: 1px solid #F2F3F4; background-color: #F8F9F9; border-radius: 5px; padding: 7px; margin: 10px 0;\"><p><b>Jules</b>：不，不，Wolfe先生，不是那样的。非常感谢您的帮助。</p></div></div><div style=\"clear: both\"><div style=\"float: right; display: inline-block; border: 1px solid #F2F3F4; background-color: #F8F9F9; border-radius: 5px; padding: 7px; margin: 10px 0;\"><p><b>Vincent</b>：听着，Wolfe先生，我尊重您。我只是不喜欢别人对我颐指气使，仅此而已。</p></div></div><div style=\"clear: both\"><div style=\"display: inline-block; border: 1px solid #D5F5E3; background-color: #EAFAF1; border-radius: 5px; padding: 7px; margin: 10px 0;\"><p><b>The Wolf</b>：如果我对你说话很简短，那是因为时间紧迫。我思考快，说话也快，如果你想脱身，你们两个就得动作点。所以拜托拜托了，求求你们，把车清理干净。.</p></div></div></div>",
+    "HyperTextUrl": "<HOSTNAME>/static/samples/hypertext.html",
+    "Image": "<HOSTNAME>/static/samples/sample.jpg",
+    "Audio": "<HOSTNAME>/static/samples/game.wav",
+    "AudioPlus": "<HOSTNAME>/static/samples/game.wav",
+    "Header": "示例：标题 文本",
+    "Paragraphs": [
+      { "author": "Alice", "text": "示例：文本 #1" },
+      { "author": "Bob", "text": "示例：文本 #2" },
+      { "author": "Alice", "text": "示例：文本 #3" },
+      { "author": "Bob", "text": "示例：文本 #4" },
+      { "author": "Alice", "text": "示例：文本 #5" }
+    ],
+    "ParagraphsUrl": "<HOSTNAME>/samples/paragraphs.json?",
+    "Table": {
+      "Card number": 18799210,
+      "First name": "示例",
+      "Last name": "文本"
+    },
+    "$videoHack": "<video src='<HOSTNAME>/static/samples/opossum_snow.mp4' width=100% controls>",
+    "Video": "<HOSTNAME>/static/samples/opossum_snow.mp4",
+    "Labels": [
+      { "value": "动态标签1", "background": "#ff0000" },
+      { "value": "动态标签2", "background": "#0000ff" }
+    ],
+    "Choices": [
+      { "value": "动态选择1" },
+      { "value": "动态选择2" },
+      { "value": "动态选择3" }
+    ],
+    "NestedChoices": [
+      {
+        "value": "动态选择标题1",
+        "children": [
+          { "value": "动态选择1.1" },
+          { "value": "动态选择1.2" }
+        ]
+      },
+      {
+        "value": "动态选择标题2",
+        "children": [
+          { "value": "动态选择2.1" },
+          { "value": "动态选择2.2" },
+          { "value": "动态选择2.3" }
+        ]
+      }
+    ],
+    "List": [
+      {
+        "id": 1,
+        "title": "示例：负鼠的奇妙世界",
+        "body": "负鼠是原产于北美洲的迷人有袋动物。它们拥有卷尾，这有助于它们轻松攀爬树木并适应周围。此外，它们以独特的防御机制而闻名，即“装死”，通过模仿死动物的外观和气味来威慑捕食者。"
+      },
+      {
+        "id": 2,
+        "title": "示例：负鼠：大自然的害虫防治",
+        "body": "负鼠在控制昆虫和啮齿动物数量方面发挥着至关重要的作用，因为它们会捕食蟑螂、甲虫和老等多种害虫。这使得它们成为园丁和房主的宝贵盟友，因为它们有助于维持生态系统的平衡，并减少对化学害虫控制方法的需求。"
+      },
+      {
+        "id": 3,
+        "title": "示例：趣味知识：负鼠对蛇毒免疫",
+        "body": "负鼠的一个令人惊讶的特征是它们对蛇毒具有天然免疫力。它们的血液中有一种独特的蛋白质，被称为“致命毒素中和”（LTNF），能够中和包括响尾蛇和棉口蛇在内的多种蛇类的毒液。这使得负鼠能够捕食蛇类而无惧伤害进一步凸显了它们在生态系统中的重要作用。"
+      }
+    ],
+    "$longText": "示例：这是用于长文本任务的示例文本。它可以用于文本分类、命名实体识别等。",
+    "$corefText": "样本：这是用于指代消解和实体链接任务的样本文本。",
+    "$pdf": "<embed src='<HOSTNAME>/static/samples/sample.pdf' width='100%' height='600px'/>",
+    "$website": "<iframe src='http://heartex.ai' width='100%' height='600px'/>",
+    "$headlessCsv": "<HOSTNAME>/static/samples/sample-task-sin-headless.csv",
+    "$humanMachineDialogue": [
+      { "author": "人类", "text": "示例：嗨，机器人！" },
+      {
+        "author": "机器人",
+        "text": "示例：很高兴见到你，人类！告诉我你想要什么。"
+      },
+      {
+        "author": "人类",
+        "text": "示例：帮我从格林街的金男孩餐厅订一份披萨"
+      },
+      {
+        "author": "机器人",
+        "text": "示例：已完成。您想什么时候拿到订单？"
+      },
+      { "author": "人类", "text": "示例：凌晨3点，请" }
+    ],
+    "$respone": "示例：响应 #1",
+    "$resptwo": "示例：响应 #2",
+    "$respthree": "示例：响应 #3",
+    "$ocr": "https://htx-pub.s3.amazonaws.com/demo/ocr/example.jpg",
+    "$ner": "示例：这是用于命名实体识别任务的示例文本。",
+    "$captioning": "<HOSTNAME>/static/samples/trees_in_snow.jpg",
+    "$pairText1": "示例：文本 #1",
+    "$pairText2": "示例：文本 #2"
+  },
+  "upload": {
+    "TextRaw": "示例：您的文本将显示在这里。",
+    "TextUrl": "https://htx-pub.s3.amazonaws.com/example.txt",
+    "HyperText": "<a href='https://labelstud.io'>Label Studio</a>",
+    "Image": "<HOSTNAME>/static/samples/sample.jpg",
+    "Audio": "<HOSTNAME>/static/samples/game.wav",
+    "AudioPlus": "<HOSTNAME>/static/samples/game.wav",
+    "Header": "示例：标题 文本",
+    "Paragraphs": [
+      { "author": "Alice", "text": "示例：你好，Bob。" },
+      { "author": "Bob", "text": "示例：你好，Alice！" },
+      { "author": "Alice", "text": "示例：最近怎么样？" },
+      { "author": "Bob", "text": "示例：好。再见！" },
+      { "author": "Alice", "text": "示例：再见，Bob。" }
+    ],
+    "Table": {
+      "Card number": 18799210,
+      "First name": "示例",
+      "Last name": "文本"
+    },
+    "$videoHack": "<video src='static/samples/opossum_snow.mp4' width=100% controls>",
+    "Video": "<HOSTNAME>/static/samples/opossum_snow.mp4",
+    "$longText": "示例：这是用于长文本任务的示例文本。它可以用于文本分类、命名实体识别等。",
+    "$pdf": "<embed src='<HOSTNAME>/static/samples/sample.pdf' width='100%' height='600px'/>",
+    "$website": "<iframe src='https://labelstud.io' width='100%' height='600px'/>",
+    "$headlessCsv": "<HOSTNAME>/static/samples/sample-task-sin-headless.csv"
+  }
+}

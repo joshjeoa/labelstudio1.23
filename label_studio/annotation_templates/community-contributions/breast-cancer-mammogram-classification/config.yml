@@ -1,0 +1,235 @@
+title: 乳腺癌乳腺X线摄影分类
+type: community
+group: Community Contributions
+image: /static/templates/community-contributions/breast-cancer-mammogram-classification.jpg
+details: <h1>Breast Cancer Mammogram Classification</h1>
+source_repo: https://github.com/humanSignal/awesome-label-studio-config/tree/main/label-configs/breast-cancer-mammogram-classification
+config: |
+  <View>
+  <!-- Template sourced from awesome-label-studio-config repository: https://github.com/humanSignal/awesome-label-studio-config/tree/main/label-configs/breast-cancer-mammogram-classification -->
+  
+    <Style>
+      .mammogram-container {
+        padding: var(--spacing-600);
+        box-shadow: 0 2px 8px rgba(var(--color-neutral-shadow-raw) / 0.15);
+        border-radius: var(--corner-radius-medium);
+        margin-bottom: var(--spacing-800);
+      }
+      
+      .mammogram-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 1fr;
+        grid-template-areas: 
+          'left-cc right-cc'
+          'left-mlo right-mlo';
+        gap: var(--spacing-600);
+        margin: var(--spacing-600) 0;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      
+      .mammogram-view {
+        text-align: center;
+        border: 2px solid var(--color-neutral-border);
+        border-radius: var(--corner-radius-medium);
+        padding: var(--spacing-500);
+        background: var(--color-neutral-background);
+        transition: border-color 0.3s ease;
+        min-height: 480px;
+        display: flex;
+        flex-direction: column;
+      }
+      
+      .mammogram-view:hover {
+        border-color: var(--color-primary-border-subtle);
+      }
+      
+      .left-cc { grid-area: left-cc; }
+      .right-cc { grid-area: right-cc; }
+      .left-mlo { grid-area: left-mlo; }
+      .right-mlo { grid-area: right-mlo; }
+      
+      .mammogram-image {
+        width: 100%;
+        height: 400px;
+        object-fit: contain;
+        border-radius: var(--corner-radius-small);
+        background: var(--color-neutral-background);
+      }
+      
+      .view-header {
+        font-size: var(--font-size-16);
+        font-weight: var(--font-weight-semibold);
+        color: var(--color-neutral-content);
+        margin-bottom: var(--spacing-300);
+        padding: var(--spacing-200) var(--spacing-300);
+        background: var(--color-neutral-surface);
+        border: 1px solid var(--color-neutral-border-subtle);
+        border-radius: var(--corner-radius-small);
+        text-align: center;
+      }
+      
+      .instructions {
+        background: var(--color-primary-background);
+        padding: var(--spacing-500);
+        border-radius: var(--corner-radius-medium);
+        border-left: 4px solid var(--color-primary-border);
+        margin-bottom: var(--spacing-600);
+        line-height: var(--line-height-body-medium);
+      }
+      
+      .instructions-header {
+        font-size: var(--font-size-16);
+        margin-bottom: var(--spacing-400);
+        line-height: var(--line-height-body-medium);
+        color: var(--color-neutral-content);
+      }
+      
+      .birads-legend {
+        background: var(--color-warning-background);
+        color: var(--color-warning-content);
+        padding: var(--spacing-400);
+        border-radius: var(--corner-radius-small);
+        border: 1px solid var(--color-warning-border-subtler);
+        margin-top: var(--spacing-400);
+        font-size: var(--font-size-14);
+        line-height: var(--line-height-body-small);
+      }
+      
+      .classification-section {
+        background: var(--color-neutral-background);
+        color: var(--color-neutral-content);
+        padding: var(--spacing-600);
+        border-radius: var(--corner-radius-medium);
+        box-shadow: 0 2px 4px rgba(var(--color-neutral-shadow-raw) / 0.1);
+        margin: var(--spacing-500) 0;
+        border: 1px solid var(--color-neutral-border-subtle);
+      }
+    </Style>
+  
+    <!-- Header for context -->
+    <Header value="乳腺癌乳腺X线摄影分类" style="text-align: center; font-size: var(--font-size-24); color: var(--color-neutral-content); margin-bottom: var(--spacing-500);" />
+  
+    <!-- Instructions -->
+    <View className="instructions">
+      <Header value="请检查双侧乳腺的标准乳腺摄影视图（CC和MLO）。对比相应的视图（例如，左侧CC与右侧CC）。分别每侧乳腺，并报告任何发现。" style="font-size: 16px; margin-bottom: 10px; height:auto;" />
+      <View className="birads-legend">
+        <Text name="birads_legend" value="BI-RADS：0 = 不完整；1 = 阴性；2 = 良性；3 = 可能良性；4 = 可疑； = 高度提示恶性；6 = 已确诊癌症" />
+      </View>
+    </View>
+  
+    <!-- Mammogram Views Grid -->
+    <View className="mammogram-container">
+      <View className="mammogram-grid">
+        <!-- Left CC -->
+        <View className="mammogram-view left-cc">
+          <Header value="左侧CC" className="view-header" />
+          <Image name="left_cc" value="$img1" className="mammogram-image" />
+        </View>
+        
+        <!-- Right CC -->
+        <View className="mammogram-view right-cc">
+          <Header value="右侧CC" className="view-header" />
+          <Image name="right_cc" value="$img3" className="mammogram-image" />
+        </View>
+        
+        <!-- Left MLO -->
+        <View className="mammogram-view left-mlo">
+          <Header value="左侧MLO" className="view-header" />
+          <Image name="left_mlo" value="$img2" className="mammogram-image" />
+        </View>
+        
+        <!-- Right MLO -->
+        <View className="mammogram-view right-mlo">
+          <Header value="右侧MLO" className="view-header" />
+          <Image name="right_mlo" value="$img4" className="mammogram-image" />
+        </View>
+      </View>
+    </View>
+  
+    <!-- Left Breast Classification -->
+    <View className="classification-section">
+      <Header value="左乳：BI-RADS分级" style="font-size: var(--font-size-20); color: var(--color-neutral-content); margin-bottom: var(--spacing-400);" />
+      <Choices name="birads_left" toName="left_cc,right_cc,left_mlo,right_mlo" choice="single" required="true">
+        <Choice value="0 - 未完成" />
+        <Choice value="1 - 阴性" />
+        <Choice value="2 - 良性" />
+        <Choice value="3 - 可能良性" />
+        <Choice value="4 - 可疑异常" />
+        <Choice value="5 - 高度提示恶性" />
+        <Choice value="6 - 已知活检证实恶性" />
+      </Choices>
+  
+      <Header value="左乳：密度" style="font-size: var(--font-size-16); color: var(--color-neutral-content-subtle); margin: var(--spacing-500) 0 var(--spacing-200) 0;" />
+      <Choices name="density_left" toName="left_cc,right_cc,left_mlo,right_mlo" choice="single">
+        <Choice value="A - 几乎完全是脂肪" />
+        <Choice value="B - 散在的腺体密度" />
+        <Choice value="C - 密度不均匀" />
+        <Choice value="D - 高密度" />
+      </Choices>
+  
+      <Header value="左乳：检查结果（可选）" style="font-size: var(--font-size-16); color: var(--color-neutral-content-subtle); margin: var(--spacing-500) 0 var(--spacing-200) 0;" />
+      <Choices name="findings_left" toName="left_cc,right_cc,left_mlo,right_mlo" choice="multiple">
+        <Choice value="肿块" />
+        <Choice value="钙化" />
+        <Choice value="结构扭曲" />
+        <Choice value="不对称" />
+        <Choice value=""皮肤/乳头凹陷" />
+      </Choices>
+    </View>
+  
+    <!-- Right Breast Classification -->
+    <View className="classification-section">
+      <Header value="右乳：BI-RADS分级" style="font-size: var(--font-size-20); color: var(--color-neutral-content); margin-bottom: var(--spacing-400);" />
+      <Choices name="birads_right" toName="left_cc,right_cc,left_mlo,right_mlo" choice="single" required="true">
+        <Choice value="0 - 未完成" />
+        <Choice value="1 - 阴性" />
+        <Choice value="2 - 良性" />
+        <Choice value="3 - 可能良性" />
+        <Choice value="4 - 可疑异常" />
+        <Choice value="5 - 高度提示恶性" />
+        <Choice value="6 - 已知活检证实恶性" />
+      </Choices>
+  
+      <Header value="右乳：密度" style="font-size: var(--font-size-16); color: var(--color-neutral-content-subtle); margin: var(--spacing-500) 0 var(--spacing-200) 0;" />
+      <Choices name="density_right" toName="left_cc,right_cc,left_mlo,right_mlo" choice="single">
+        <Choice value="A - 几乎完全是脂肪" />
+        <Choice value="B - 散在的纤维腺体密度" />
+        <Choice value="C - 密度不均匀" />
+        <Choice value="D - 极高密度" />
+      </Choices>
+  
+      <Header value="右乳：发现（可选）" style="font-size: var(--font-size-16); color: var(--color-neutral-content-subtle); margin: var(--spacing-500) 0 var(--spacing-200) 0;" />
+      <Choices name="findings_right" toName="left_cc,right_cc,left_mlo,right_mlo" choice="multiple">
+        <Choice value="肿块" />
+        <Choice value="钙化" />
+        <Choice value="结构扭曲" />
+        <Choice value="不对称" />
+        <Choice value=""皮肤/乳头凹陷" />
+      </Choices>
+    </View>
+  
+    <!-- Additional Observations -->
+    <View className="classification-section">
+      <Header value="附加观察/备注（可选）" style="font-size: var(--font-size-20); color: var(--color-neutral-content); margin-bottom: var(--spacing-400);" />
+      <TextArea
+        name="notes"
+        toName="left_cc,right_cc,left_mlo,right_mlo"
+        rows="5"
+        placeholder="描述任何显著的发现、技术问题或与先前检查的比较。"
+        style="width: 100%; padding: var(--spacing-300); border: 2px solid var(--color-neutral-border); border-radius: var(--corner-radius-small); font-size: var(--font-size-14); background: var(--color-neutral-background); color: var(--color-neutral-content);"
+      />
+    </View>
+  </View>
+  
+  <!-- {
+    "data": {
+      "img1": "https://raw.githubusercontent.com/HumanSignal/awesome-label-studio-configs/refs/heads/main/label-configs/breast-cancer-mammogram-classification/assets/l-cc.png",
+      "img2": "https://raw.githubusercontent.com/HumanSignal/awesome-label-studio-configs/refs/heads/main/label-configs/breast-cancer-mammogram-classification/assets/r-cc.png",
+      "img3": "https://raw.githubusercontent.com/HumanSignal/awesome-label-studio-configs/refs/heads/main/label-configs/breast-cancer-mammogram-classification/assets/l-mlo.png",
+      "img4": "https://raw.githubusercontent.com/HumanSignal/awesome-label-studio-configs/refs/heads/main/label-configs/breast-cancer-mammogram-classification/assets/r-mlo.png"
+    }
+  }
+  -->

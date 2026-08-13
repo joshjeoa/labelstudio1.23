@@ -1,0 +1,97 @@
+title: 搜索页面排名
+type: community
+group: Ranking & Scoring
+image: /static/templates/serp-ranking.png
+details: <h1>Rank different kinds of results by given search query</h1>
+config: |
+  <View>
+    <View style="margin:5px;      width:575px;      border-radius:30px;      border:1px solid #dcdcdc;             height:45px;      width:500px;      font-size:16px;             display: flex;             justify-content: center;             padding: 8px;      outline: none;             background-image: url('https://htx-pub.s3.amazonaws.com/samples/google-search-magnifying-glass-icon-5.jpeg');             background-position: left center;             background-size: 24px;             background-repeat: no-repeat;             background-origin: content-box;                ">
+      <Text name="text" value="$text"/>
+    </View>
+    <View className="dynamic_choices">
+      <Choices name="dynamic_choices" toName="text" selection="checkbox" value="$options" layout="vertical" choice="multiple" allownested="true"/>
+    </View>
+    <View style="box-shadow: 2px 2px 5px #999; padding: 20px; margin-top: 1em; border-radius: 5px;">
+      <Header value="搜索质量"/>
+      <Rating name="relevance" toName="text"/>
+    </View>
+    <View style="box-shadow: 2px 2px 5px #999; padding: 15px 5px 10px 20px; margin-top: 1.5em; margin-bottom: 1.25em; border-radius: 5px; display: flex; align-items: center;">
+      <Header value="标签置信度" style="font-size: 1.25em"/>
+      <View style="margin: 0 1em 0.5em 1.5em">
+        <Choices name="confidence" toName="text" choice="single" showInLine="true">
+          <Choice value="低" html="&lt;img width='40' src='https://www.iconsdb.com/icons/preview/green/thumbs-up-xxl.png'/&gt;"/>
+          <Choice value="高" html="&lt;img width='40' src='https://www.iconsdb.com/icons/preview/red/thumbs-down-xxl.png'/&gt;"/>
+        </Choices>
+      </View>
+    </View>
+    <Style>
+    .searchresultsarea {
+      margin-left: 10px;
+      font-family: 'Arial';
+    }
+    .searchresult {
+    	margin-left: 8px;
+  	}
+  	.searchresult h2 {
+      font-size: 19px;
+      line-height: 18px;
+      font-weight: normal;
+      color: rgb(29, 1, 189);
+      margin-bottom: 0px;
+      margin-top: 25px;
+  	}
+  	.searchresult a {
+      font-size: 14px;
+      line-height: 14px;
+      color: green;
+      margin-bottom: 0px;
+  	}
+    .searchresult button {
+      font-size: 10px;
+      line-height: 14px;
+      color: green;
+      margin-bottom: 0px;
+      padding: 0px;
+      border-width: 0px;
+      background-color: white;
+    }
+    </Style>
+  </View>
+  <!-- {
+    "data": {
+      "text": "宇宙中最大的黑洞是哪一个？",
+      "options": [
+        {
+          "html": "<div class=\"searchresultsarea\"><div class=\"searchresult\"><h2>最巨大黑洞列表 - 维基百科</h2><a href='https://en.wikipedia.org/wiki/List_of_most_massive_black_holes' target='_blank'>https://en.wikipedia.org/wiki/List_of_most_massive_black_holes</a> <p>列表；梅西耶59，2.7×10 · 这个黑洞具有逆行自转。; PG 1411+442, (4.43±1.46)×10 · 79430000 ; Markarian 876, (2.79±1.29)×10 · 240000000 ; 仙座 ...</p></div>",
+          "value": "result1",
+          "children": [
+            {
+              "html": "<div class=\"searchresultsarea\"><div class=\"searchresult\"><h2>超大质量黑洞 - 维基百科</h2><a href='https://en.wikipedia.org/wiki/Supermassive_black_hole' target='_blank'>https://en.wikipedia.org/wiki/Supermassive_black_hole</a> <p>银河系附近最大的超大质量黑洞似乎是梅西耶87（即M87*）的黑洞，其质量为(6±0.5)×10⁹（约64亿）太阳质量，距离5350万光年。</p></div>",
+              "value": "result11",
+              "selected": true
+            },
+            {
+              "html": "<div class=\"searchresultsarea\"><div class=\"searchresult\"><h2>超大质量黑洞</h2><a href='https://pt.wikipedia.org/wiki/Buraco_negro_supermassivo' target='_blank'>https://pt.wikipedia.org/wiki/Buraco_negro_supermassivo</a> <p>超大质量黑洞是主要存在于星系中心的黑洞类别。与起源于大质量恒星演化的恒星级黑洞不同，超大黑洞是在宇宙尚且更年轻、更稠密时，由巨大的气体云或数百万恒星在自身引力作用下坍缩而形成的。</p></div>",
+              "value": "result12"
+            }
+          ]
+        },
+        {
+          "html": "<div class=\"searchresultsarea\"><div class=\"searchresult\"><h2>黑洞大小对比图表为宇宙提供了新视角</h2><a href='https://nerdist.com/article/biggest-black-holes-size-comparison/' target='_blank'>https://nerdist.com/article/biggest-black-holes-size-comparison/</a> <p>它们内部可以容纳多个太阳系。Ton 618，最大的超大质量黑洞，出现在视频的最末尾，它，...</p></div>",
+          "value": "result2"
+        },
+        {
+          "html": "<div class=\"searchresultsarea\"><div class=\"searchresult\"><h2>宇宙中最大的黑洞有多大？- 商业...</h2><a href='https://www.businessinsider.com/black-hole-how-big-largest-universe-2019-5' target='_blank'>https://www.businessinsider.com/black-hole-how-big-largest-universe-2019-5</a> <p>梅西耶87中心的超大质量黑洞如此巨大，以至于天文学家在5500万光年外就能看到它。有24...</p></div>",
+          "value": "result3"
+        },
+        {
+          "html": "<div class=\"searchresultsarea\"><div class=\"searchresult\"><h2>迄今为止发现的5个最巨大的黑洞。- 秘密</h2><a href='https://www.secretsofuniverse.in/5-most-massive-black-holes/' target='_blank'>https://www.secretsofuniverse.in/5-most-massive-black-holes/</a> <p>最巨大黑洞的列表以TON 618位居榜首。TON 618在技术上是一个超亮、宽吸收线、电强类星体——位于</p></div>",
+          "value": "result4"
+        },
+        {
+          "html": "<div class=\"searchresultsarea\"><div class=\"searchresult\"><h2>“巨大无比”的黑洞可能会成长为真正恐怖的……</h2><a href='https://www.space.com/black-holes-can-reach-stupendously-large-sizes.html' target='_blank'>https://www.space.com/black-holes-can-reach-stupendously-large-sizes.html</a> <p>目前已知最大的黑洞，为类星体TON 618提供能量，其质量为660亿倍太阳质量。TON 618巨大体积导致……</p></div>",
+          "value": "result5"
+        }
+      ]
+    }
+  } -->

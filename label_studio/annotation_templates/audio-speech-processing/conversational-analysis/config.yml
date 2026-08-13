@@ -1,0 +1,71 @@
+title: 会话分析
+type: community
+group: Audio/Speech Processing
+image: /static/templates/thumbnail-conversation-sentiment.png
+details: |
+  <h1>Analyse dialogue utterances and markup facts and sentiment aspects</h1>
+  <dl>
+    <dt>Industry Applications</dt>
+    <dd>call center quality, customer service analysis, sales call analysis, therapy session analysis, meeting transcription, interview analysis, focus group research, market research, podcast analysis, conference call analysis, legal deposition, telehealth consultations</dd>
+    <dt>Associated Models</dt>
+    <dd>conversation mining, dialogue act classification, sentiment analysis, emotion recognition</dd>
+    <dt>Domain Terminology</dt>
+    <dd>turn-taking, conversational AI, dialogue systems, discourse analysis, speech sentiment</dd>
+  </dl>
+config: |
+  <View>
+      <Audio name="audio" value="$audio"
+             hotkey="space" sync="text"/>
+      <Header value="文字记录"/>
+      <Paragraphs audioUrl="$audio"
+                  sync="audio"
+                  name="text"
+                  value="$text"
+                  layout="dialogue"
+                  textKey="text"
+                  nameKey="author"
+                  granularity="paragraph"
+                  contextscroll="true" />
+       <View style="position: sticky">
+        <Header value="情感标签"/>
+        <ParagraphLabels name="label" toName="text">
+          <Label value="积极的" background="#00ff00"/>
+          <Label value="消极的" background="#ff0000"/>
+        </ParagraphLabels>
+      </View>
+  </View>
+  <!-- { "data": {
+    "text": [
+      {
+        "end": 1.5,
+        "text": "你不觉得这很讨厌吗？",
+        "start": 0,
+        "author": "Mia Wallace"
+      },
+      {
+        "text": "恨什么？",
+        "start": 1.5,
+        "author": "Vincent Vega:",
+        "duration": 3
+      },
+      {
+        "end": 7,
+        "text": "尴尬的沉默。为什么我们觉得必须闲聊些废话才能感到自在？",
+        "start": 4.5,
+        "author": "Mia Wallace:"
+      },
+      {
+        "end": 10,
+        "text": "我不知道。这是一个好问题。",
+        "start": 8,
+        "author": "Vincent Vega:"
+      },
+      {
+        "text": "那就是你发现了一个真正特别的人的时候。当你能关上门静静待上一分钟，并能舒适地共享沉默。",
+        "start": 10,
+        "author": "Mia Wallace:"
+      }
+    ],
+    "audio": "/static/samples/game.wav"
+  }}
+  -->

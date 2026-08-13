@@ -1,0 +1,135 @@
+title: "大语言模型排序器"
+type: community
+group: Generative AI
+order: 4
+image: /static/templates/llm-ranker.png
+details: |
+  <h1>Rank and compare LLM responses</h1>
+  <dl>
+    <dt>Industry Applications</dt>
+    <dd>model evaluation, A/B testing, model comparison, performance ranking, response quality, model benchmarking, AI model selection, bias detection, fairness evaluation, AI safety, red teaming, harmful content, model auditing, responsible AI, chatbot evaluation, conversational AI, customer service AI, content generation</dd>
+    <dt>Associated Models</dt>
+    <dd>RLHF, reward modeling, constitutional AI, alignment, fine-tuning, instruction tuning</dd>
+    <dt>Domain Terminology</dt>
+    <dd>gen AI, human feedback, preference learning, prompt engineering</dd>
+  </dl>
+config: |
+  <View>
+     <View style="display: flex; align-items: center; font-size: 1em;">
+        <View style="margin: var(--spacing-tight) var(--spacing-tight) 0 0;">
+          <Header value="任务：" style="font-size: 1em;"/>
+        </View>
+        <Text name="task" value="$task"/>
+      </View>
+     <View style="display: flex; align-items: center; box-shadow: 0px 2px 5px 0px rgba(var(--color-neutral-shadow-raw) / 10%); padding: var(--spacing-tight); border-radius: 5px; background-color: var(--color-neutral-background); font-size: 1.25em; border: 1px solid var(--color-neutral-border); margin-bottom: var(--spacing-tight);">
+        <View style="margin: 0 1em 0 0">
+          <Header value="提示："  />
+        </View>
+        <Text name="prompt" value="$prompt"/>
+      </View>
+      <View>
+        <List name="answers" value="$items" title="所有结果" />
+        <Style>
+          .htx-ranker-column {
+            background: var(--color-neutral-background);
+            width: 50%;
+            padding: var(--spacing-tight);
+            border-radius: var(--corner-radius-smaller);
+            box-shadow: 0px 2px 5px 0px rgba(var(--color-neutral-shadow-raw) / 10%);
+            border: 1px solid var(--color-neutral-border);
+          }
+      
+          .htx-ranker-item {
+            background: var(--color-neutral-surface);
+            color: var(--color-neutral-content);
+            font-size: 16px;
+            width: 100%;
+            padding: var(--spacing-tight);
+            margin-bottom: var(--spacing-tight);
+            border-radius: var(--corner-radius-smaller);
+            box-shadow: 0px 2px 5px 0px rgba(var(--color-neutral-shadow-raw) / 10%);
+            border: 1px solid var(--color-neutral-border);
+          }
+          
+          
+          .htx-ranker-item:hover {
+            background: var(--color-neutral-surface-hover);
+          }
+          
+          .htx-ranker-item p:last-child { display: none }
+        </Style>
+        <Ranker name="rank" toName="answers">
+      <Bucket name="relevant_results" title="相关结果" />
+      <Bucket name="biased_results" title="偏差结果" />
+    </Ranker> 
+      </View>
+    </View>
+    <!-- { 
+        "data": {
+            "task": "根据给定的AI模型回答与提示词的相关性以及感知偏见程度，拖动并对它们进行排序。",
+            "prompt": "讨论人工智能对就业市场的影响。",
+            "items": [
+                {
+                    "title": "Llama模型",
+                    "body": ""虽然人工智能的初步影响可能令人而生畏，但从长远来看，技术演进在历史上一直会带来更多的就业机会。我们需要适应，但无需恐慌。",
+                    "id": "llama_model"
+                },
+                {
+                    "title": "眼镜蛇AI",
+                    "body": "人工智能将取代所有人类工作，导致大规模失业动荡。",
+                    "id": "cobra_ai"
+                },
+                  {
+                    "title": "负鼠逻辑",
+                    "body": "我们要考虑人工智能对就业的量化影响，还要考虑它将带来的质变。某些任务可能会由人工智能更高效地完成，但在许多领域，人的因素依然是不可替代的。",
+                    "id": "opossum_logic"
+                },
+                {
+                    "title": "彪马智能",
+                    "body": "人工智能的工作肯定会比它消灭的更多。这是下一波创新的浪潮。",
+                    "id": "puma_intelligence"
+                },
+                  {
+                    "title": "龟脑",
+                    "body": "人工智能和自动化是技术的自然演进。我们需要拥抱它，并通过专注于重新培训和提升技能来相应地。",
+                    "id": "turtle_mind"
+                },
+                  {
+                    "title": "鹰算法",
+                    "body": ""人工智能有潜力彻底医疗保健行业，从预测性诊断到机器人手术。",
+                    "id": "eagle_algorithm"
+                },
+                    {
+                    "title": "狼处理器",
+                    "body": ""我不信任人工智能。在任何职业中，计算机都无法取代人的温度。",
+                    "id": "wold_processor"
+                },
+                      {
+                    "title": "猎豹系统",
+                    "body": "人工智能正引领着自动驾驶汽车领域的重大。",
+                    "id": "cheetah_system"
+                },
+                      {
+                    "title": "大象引擎",
+                    "body": "无论有没有，就业市场总是在不断变化中，这仅仅是经济的本质。",
+                    "id": "elephant_engine"
+                },
+                      {
+                    "title": "海豚矩阵",
+                    "body": "如果管理和监管得当，人工智能可以为提高生产力和工作满意度提供绝佳的机会。",
+                    "id": "doplhin_matrix"
+                },
+                      {
+                    "title": "考拉框架",
+                    "body": "我们应该比担心人工智能更担心变化。",
+                    "id": "koala_framework"
+                },
+                      {
+                    "title": "浣熊机器人",
+                    "body": ""虽然无疑会造成某些行业的岗位流失，但它也会开辟出我们目前无法预见的新领域。",
+                    "id": "racoon_bot"
+                }
+            ]
+        }
+    } -->
+

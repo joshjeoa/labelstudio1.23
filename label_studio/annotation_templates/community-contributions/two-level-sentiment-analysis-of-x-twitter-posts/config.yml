@@ -1,0 +1,92 @@
+title: X/Twitter帖子的两级情感分析
+type: community
+group: Community Contributions
+image: /static/templates/community-contributions/two-level-sentiment-analysis-of-x-twitter-posts.jpg
+details: <h1>Two-Level Sentiment Analysis of X / Twitter posts</h1>
+source_repo: https://github.com/humanSignal/awesome-label-studio-config/tree/main/label-configs/two-level-sentiment-analysis-of-x-twitter-posts
+config: |
+  <View>
+  <!-- Template sourced from awesome-label-studio-config repository: https://github.com/humanSignal/awesome-label-studio-config/tree/main/label-configs/two-level-sentiment-analysis-of-x-twitter-posts -->
+  
+    <!-- CSS fix for the legacy plaground -->
+    <Style>
+      .htx-text{padding:0; background: transparent; border:none;}
+    </Style>
+    <View 
+      style="
+        border: 1px solid #e1e8ed;
+        border-radius: 8px;
+        padding: 10px;
+        max-width: 500px;
+        background-color: #fff;
+        font-family: Arial, sans-serif;
+      "
+    >
+      <View 
+        style="
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        "
+      >
+        <View 
+          style="
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #ccc;
+            background-image: url('https://randomuser.me/api/portraits/men/3.jpg');
+            background-size: cover;
+          "
+        ></View>
+        <Header name="username" value="John Doe" />
+        <Text name="handle" value="@johndoe" style="color:gray;" />
+        <Text name="timestamp" value="· 2小时前" style="color:gray;" />
+      </View>
+      <View style="margin-top: 8px;">
+        <Text name="tweet" value="$tweet" />
+      </View>
+      <View 
+        style="
+          display: flex;
+          justify-content: space-between;
+          font-size: 12px;
+          color: #657786;
+          margin-top: 20px;
+        "
+      >
+        <Text name="comments" value="💬 10" />
+        <Text name="retweets" value="🔁 3" />
+        <Text name="likes" value="❤️ 7" />
+        <Text name="views" value="📊 134" />
+        <Text name="other" value="🔖 ⬆" />
+      </View>
+    </View>
+  
+    <Choices name="sentiment" toName="tweet" choice="single">
+      <Choice value="正面" hint="Click on it if it says something nice or good" />
+      <Choice value="中立" hint="Click on it if overall it doesn't express any sentiment" />
+      <Choice value="负面" hint="Click on if it says something bad or unpleasant" />
+    </Choices>
+    
+    <Choices name="other-props" toName="tweet"
+             choice="multiple" showInLine="true"
+             visibleWhen="choice-selected"
+             whenTagName="sentiment">
+      <View style="width:100%">
+        <Header value="Other properties of the post" />
+      </View>
+      <Choice value="描述性" />
+      <Choice value="情感性" hint="Click on it if it shows moderate to strong sentiment" />
+      <Choice value="混合性" hint="Click on it if multiple conflicting sentiments are present"/>
+      <Choice value="模糊性" hint="Click on it if it is irrelevant or unclear"/>
+      <Choice value="讽性" hint="Click on it if it shows ironic or sarcastic content"/>
+    </Choices>
+  </View>
+  
+  <!-- [
+    { "text": "💖😭 刚刚被我梦想的大学录取了！！还在发抖，还在哭泣——这是我人生中最美好的一天！！！努力真的没有白费 🎓✨ #感恩 #梦想成真 #无比幸福" },
+    { "text": "季度财务报告于今日发布。与上季度相比，收入增长了2%，而运营成本保持稳定。 #财务报告 #第一季度业绩。" },
+    { "text": "😠 真不敢相信快递又延迟了——这周已经是第三次了！客服服务极其令人沮丧和失望。#失败 #服务差" }
+  ]
+  -->

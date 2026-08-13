@@ -1,0 +1,151 @@
+title: 评估用于RLHF的生产对话
+type: enterprise
+group: Chat
+order: 5
+image: /static/templates/chat-rlhf.png
+details: |
+  <h1>Bring production chats into this template to learn why your agent succeeds or fails</h1>
+  <dl>
+    <dt>Industry Applications</dt>
+    <dd>RLHF data collection, production conversation analysis, agent improvement, user preference learning, failure analysis, success pattern identification, fine-tuning data generation, quality monitoring, real-world behavior evaluation, feedback collection</dd>
+    <dt>Associated Models</dt>
+    <dd>RLHF training, preference learning, conversation evaluation, quality metrics</dd>
+    <dt>Domain Terminology</dt>
+    <dd>RLHF, human feedback, preference labels, conversation-level evaluation, per-message evaluation, production conversations, agent performance, success patterns</dd>
+  </dl>
+config: |
+  <View>
+    <Style>
+      .chat {
+        border: 1px solid var(--color-neutral-border);
+        padding: var(--spacing-tight);
+        border-radius: var(--corner-radius-medium);
+        background-color: var(--color-neutral-background);
+      }
+      .evaluation {
+          border: 2px solid var(--color-accent-canteloupe-base);
+          background-color: var(--color-accent-canteloupe-subtlest);
+          color: var(--color-accent-canteloupe-bold);
+          padding: var(--spacing-tight);
+          border-radius: var(--corner-radius-medium);
+          margin-bottom: var(--spacing-base);
+      }
+      <!-- Choice text -->
+      .evaluation span {
+          color: var(--color-accent-canteloupe-bold);
+      }
+      <!-- Star rating -->
+      .evaluation .ant-rate-star.ant-rate-star-full span {
+        color: var(--color-accent-canteloupe-base);
+       }
+     
+      .overall-chat {
+         border-bottom: 1px solid var(--color-neutral-border);
+         margin-bottom: var(--spacing-base);
+      }
+      .instructions {
+         color: var(--color-accent-canteloupe-bold);
+         background-color: var(--color-accent-canteloupe-subtlest);
+         padding: var(--spacing-tight);
+         border-radius: var(--corner-radius-medium);
+         border: 1px solid var(--color-accent-canteloupe-subtle);
+      }
+      <!-- Allow enlarging the instruction text -->
+      .lsf-richtext__container.lsf-htx-richtext {
+        font-size: 16px !important;
+        line-height: 1.6;
+      }
+      
+      <!-- Remove excess height from the chat to allow space for instruction text -->
+      .htx-chat { 
+        --excess-height: 275px;
+        background-color: var(--color-neutral-background);
+      }
+    </Style>
+    <View style="display: flex; gap: var(--spacing-wide);">
+      
+      <!-- Left: conversation -->
+      <View className="chat" style="flex: 2;">
+        <View className="instructions">
+          <Text name="instructions" value="详细查看对话。在阅读过程中，点击单条消息，对准确性、清晰度和意图提供反馈。" />
+        </View>
+        
+        <Chat name="chat" value="$chat" 
+              minMessages="2" 
+              editable="false" />
+      </View>
+
+      <!-- Right: conversation and message evaluation -->
+      <View style="flex: 1; display: flex; flex-direction: column;" className="evaluation">
+        
+        <!-- Evaluate the whole conversation -->
+        <View className="overall-chat">
+          <Header size="4">本次对话的整体质量</Header>
+          <Rating name="rating" toName="chat" />
+          
+          <View style="padding-top: var(--spacing-base);">
+            <Text name="add_comment" value="添加评论（可选）" />
+            <TextArea name="conversation_comment" toName="chat" />
+          </View>
+        </View>
+
+        <!-- Per-message evaluation -->
+        <View style="flex: 1; overflow: auto;">
+        
+          <!-- Only visible when no message is selected -->
+          <View visibleWhen="no-region-selected">
+            <Header value="点击一条消息进行评估" size="3"/>
+          </View>
+
+          <!-- Only visible when an assistant message is selected -->
+          <View visibleWhen="region-selected" whenRole="assistant">
+            <Header value="响应准确度"/>
+            <Rating name="assistant_response_accuracy" toName="chat" perRegion="true" maxRating="5" icon="star"/>
+            
+            <Header value="相关性"/>
+            <Choices name="relevance" toName="chat" perRegion="true" >
+              <Choice value="高度相关" />
+              <Choice value="有些相关" />
+              <Choice value="不相关" />
+            </Choices>
+            
+            <Header value="正确性"/>
+            <Choices name="correctness" toName="chat" perRegion="true" >
+              <Choice value="准确且事实性" />
+              <Choice value="大部分准确，有轻微问题”" />
+              <Choice value="包含重大错误" />
+            </Choices>
+            
+            <Header value="语气"/>
+            <Choices name="tone" toName="chat" perRegion="true" choice="multiple" >
+              <Choice value="过于正式" />
+              <Choice value="太随意" />
+              <Choice value="适当" />
+            </Choices>
+            
+            <Header value="添加评论（可选）"/>
+            <TextArea perRegion="true" name="message_comment" toName="chat" />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+
+  <!-- {
+    "data": {
+      "text": "详细查看对话。在阅读过程中，点击单条消息以提供关于准确性、清晰度和意图的反馈。",
+      "chat": [
+        {
+          "role": "user",
+          "content": "我正在入职一名新的标注员。确保质量和速度的第一步是什么？"
+        },
+        {
+          "role": "assistant",
+          "content": "首先创建他们的账户并分配标注员角色，以便正确限定权限范围。添加简洁的标注说明，这些说明会在标注前显示。使用一部分真值集，并要求与审核员重叠（例如，每个任务分配2名标注员）以解决分歧。启用评论功能，以便审核员可以留下精确的任务反馈。"
+        }
+      ]
+    }
+  } -->
+
+
+

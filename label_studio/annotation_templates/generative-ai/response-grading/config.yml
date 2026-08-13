@@ -1,0 +1,88 @@
+title: 大语言模型回复评分
+type: community
+group: Generative AI
+order: 6
+image: /static/templates/response-grading.png
+details: |
+  <h1>Assign a grade to LLM responses based on how well it meets your internal guidelines</h1>
+  <dl>
+    <dt>Industry Applications</dt>
+    <dd>model evaluation, content quality assessment, educational assessment, AI tutoring systems, automated grading, writing assessment, customer service evaluation, chatbot quality control, academic writing, student response evaluation, content moderation, LLM benchmarking, AI evaluation</dd>
+    <dt>Associated Models</dt>
+    <dd>human evaluation, quality metrics, response scoring, rubric-based assessment</dd>
+    <dt>Domain Terminology</dt>
+    <dd>gen AI, response quality, content grading, automated assessment, performance rating</dd>
+  </dl>
+config: |
+  <View>
+    <Style>
+      .root {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+      .container {
+        display: flex;
+        flex: 1;
+      }
+      .block {
+        flex: 1;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .scrollable {
+        overflow-y: auto;
+        height: calc(100vh - 80px); /* Adjust height to accommodate header and footer */
+      }
+      .long-document {
+        background-color: #f9f9f9;
+        border-right: 1px solid #ddd;
+      }
+      .short-summary {
+        background-color: #f1f1f1;
+      }
+      .summary-rating {
+        padding: 20px;
+        background-color: #c3bcbc;
+        border-top: 1px solid #ddd;
+        text-align: center;
+      }
+      h2 {
+        margin-top: 0;
+      }
+    </Style>
+
+    <View className="root">
+      <View className="container">
+        <View className="block long-document scrollable">
+          <Header value="长文档"/>
+          <Text name="document" value="$document"/>
+        </View>
+
+       <View className="block short-summary">
+         <Header value="简短摘要"/>
+         <Text name="summary" value="$summary"/>
+       </View>
+      </View>
+
+      <View className="summary-rating">
+        <Header value="对文档摘要进行评分："/>
+        <Rating name="rating" toName="summary" required="true"/>
+      </View>
+    </View>
+  </View>
+
+  <!--{ "data" : {
+    "document": [
+        "负鼠（在北美洲通常被称为possums）是主要分布于美洲的有袋类动物。最著名的物种是弗吉尼亚鼠（Didelphis virginiana），其分布范围从中美洲和美国东部延伸至加拿大南部。这些适应能力极强的生物以能在包括农村和城市在多种环境中茁壮成长而闻名。负鼠也分布在南美洲，那里的不同物种栖息在从热带雨林到温带森林的生态系统中。",
+        "负鼠在栖息地方面具有很强的适应性，常居住在林地、农田，甚至郊区的后院。它们通常在树洞、废弃的洞穴或任何能找到的黑暗封闭空间中寻求庇护。负鼠是夜行性杂食动物，食谱包括水果、昆虫小型动物，甚至腐肉。它们机会主义的进食习性有助于其增强韧性，并使其能够生活在人类定居点附近。",
+        "在行为方面，负鼠是独居且游荡的，经常为了寻找食物而移动到不同的地点。它们以独特的防御机制而名，即在受到威胁时“装死”或“装负鼠”，通过模仿生病或死亡动物的外观和气味来威慑捕食者。鼠的寿命相对较短，在野外通常只能活2到4年。尽管寿命短暂，但它们的繁殖速度很快，雌性一次可产下多达0只幼崽，不过通常并非所有后代都能存活至成年。",
+        "在流行文化中，负鼠因其顽强的生命力和适应各种环境的能力，常被视为韧性与生存的象征。由于它们行性的习性以及略显凌乱的外表，有时会被描绘成滑稽或被误解的形象。尽管如此，它们在生态系统中发挥着至重要的作用，能够控制昆虫和啮齿动物的数量，并清理腐肉。负鼠出现在各种形式的媒体中，从动画片、儿童读物到电影，强调它们独特的行为和生存策略。"
+      ],
+      "summary": "负鼠主要分布于美洲，是适应能力极强的有袋动物，以能在从乡村到城市的各种环境中繁衍生息闻名。它们是夜行性杂食动物，常在黑暗封闭的空间中寻找庇护所，并利用“装死”这一独特的防御机制来威慑食者。在流行文化中，负鼠象征着韧性与生存，通过控制昆虫和啮齿动物种群以及清理腐肉，在生态系统中发挥至关重要的作用。"
+    }
+  }
+  -->

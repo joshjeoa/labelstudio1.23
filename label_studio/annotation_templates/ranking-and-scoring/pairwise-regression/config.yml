@@ -1,0 +1,13 @@
+title: 成对回归
+type: community
+group: Ranking & Scoring
+image: /static/templates/pairwise-regression.png
+details: <h1>Select how likely it is that two items occur together</h1>
+config: |
+  <View>
+    <Header>设置这些图像代表相同事物的可能性：</Header>
+      <Rating name="rating" toName="image1,image2"/>
+      <Image name="image1" value="$image1" />
+      <Image name="image2" value="$image2" />
+  </View>
+

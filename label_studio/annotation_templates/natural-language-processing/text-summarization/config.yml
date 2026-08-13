@@ -1,0 +1,47 @@
+title: 文本摘要
+type: community
+group: Natural Language Processing
+image: /static/templates/text-summarization.png
+details: |
+  <h1>Summarize in one sentence</h1>
+  <dl>
+    <dt>Industry Applications</dt>
+    <dd>news summarization, research paper abstracts, meeting minutes, legal brief summaries, medical case summaries, financial reports, customer feedback summaries, document intelligence, executive summaries, literature reviews, patent analysis, regulatory compliance</dd>
+    <dt>Associated Models</dt>
+    <dd>extractive summarization, abstractive summarization, ROUGE evaluation, BERT summarization</dd>
+    <dt>Domain Terminology</dt>
+    <dd>information distillation, key insight extraction, content condensation, automatic abstracting</dd>
+  </dl>
+config: |
+  <View>
+    <Header value="请阅读文本" />
+    <Text name="text" value="$text" />
+
+    <Header value="提供一句话摘要" />
+    <TextArea name="answer" toName="text"
+              showSubmitButton="true" maxSubmissions="1" editable="true"
+              required="true" />
+  </View>
+
+
+  <!-- {
+   "data": {
+     "text": "自动摘要有两种通用方法：抽取式和生成式。抽取式摘要：在这种方法中，内容是从原始数据中的，但提取的内容不会以任何方式被修改。提取内容的例子包括可用于为文本文件“打标签”或建立索引的关键短语，或者共同构成摘要的关键句子（包括标题），以及如上所述的代表性图像或视频片段。对于文本而言，抽取类似于略读的过程，即在选择详细阅读整个文档之前先阅读摘要（如果有）、标题和副标题、图表、章节的第一段和最后一段，以及可选的段落首尾句。[3] 抽取的其他包括在临床相关性方面（包括患者/问题、干预措施和结果）的关键文本序列。[4] 生成式摘要：这主要应用于文本。生成式方法原始内容的内部语义表示，然后利用该表示创建一个更接近人类表达方式的摘要。生成式方法可能会通过改写源文档的部分内容来转换提取的内容，从而抽取式更强烈地压缩文本。然而，这种转换在计算上比抽取式更具挑战性，既涉及自然语言处理，又往往需要对原始文本所属专业知识领域有深入理解。将“改写”应用于图像和视频甚至更加困难，这就是为什么大多数摘要系统都是抽取式的。"
+   },
+   "annotations": [{
+       "result": [
+         {
+           "value": {
+             "text": [
+               "自动摘要有两种通用方法：抽取式和生成式。抽取式摘要：在这种方法中，内容是从原始数据中的，但提取的内容不会以任何方式被修改。提取内容的例子包括可用于为文本文件“打标签”或建立索引的关键短语，或者共同构成摘要的关键句子（包括标题），以及如上所述的代表性图像或视频片段。对于文本而言，抽取类似于略读的过程，即在选择详细阅读整个文档之前先阅读摘要（如果有）、标题和副标题、图表、章节的第一段和最后一段，以及可选的段落首尾句。[3] 抽取的其他包括在临床相关性方面（包括患者/问题、干预措施和结果）的关键文本序列。[4] 生成式摘要：这主要应用于文本。生成式方法原始内容的内部语义表示，然后利用该表示创建一个更接近人类表达方式的摘要。生成式方法可能会通过改写源文档的部分内容来转换提取的内容，从而抽取式更强烈地压缩文本。然而，这种转换在计算上比抽取式更具挑战性，既涉及自然语言处理，又往往需要对原始文本所属专业知识领域有深入理解。将“改写”应用于图像和视频甚至更加困难，这就是为什么大多数摘要系统都是抽取式的。"
+             ]
+           },
+           "id": "Zc_Rb6Bszp",
+           "from_name": "answer",
+           "to_name": "text",
+           "type": "textarea"
+         }
+       ]
+     }]
+   } -->
+

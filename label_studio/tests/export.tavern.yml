@@ -1,0 +1,329 @@
+---
+test_name: simple_export
+strict: false
+marks:
+- usefixtures:
+  - django_live_url
+stages:
+- id: signup
+  type: ref
+- name: stage
+  request:
+    headers:
+      content-type: application/json
+    json:
+      label_config: <View><Text name="text" value="$text"/><Choices name="label" toName="text"><Choice
+        value="pos"/><Choice value="neg"/></Choices></View>
+    method: POST
+    url: '{django_live_url}/api/projects'
+  response:
+    save:
+      json:
+        pk: id
+    status_code: 201
+- name: stage
+  request:
+    files:
+      file: tests/test_suites/samples/lines.txt
+    headers:
+      content-type: multipart/form-data
+    method: POST
+    url: '{django_live_url}/api/projects/{pk}/import'
+  response:
+    json:
+      annotation_count: 0
+      prediction_count: 0
+      task_count: 3
+    status_code: 201
+- name: stage
+  request:
+    method: GET
+    url: '{django_live_url}/api/projects/{pk}/next'
+  response:
+    save:
+      json:
+        task_pk: id
+    status_code: 200
+- name: stage
+  request:
+    headers:
+      content-type: application/json
+    json:
+      lead_time: 34.56
+      result:
+      - from_name: label
+        to_name: text
+        type: choices
+        value:
+          choices:
+          - pos
+    method: POST
+    url: '{django_live_url}/api/tasks/{task_pk}/annotations'
+  response:
+    save:
+      json:
+        annotation_pk: id
+    status_code: 201
+- name: stage
+  request:
+    method: GET
+    url: '{django_live_url}/api/projects/{pk}/export'
+  response:
+    status_code: 200
+- name: stage
+  request:
+    method: GET
+    url: '{django_live_url}/api/projects/{pk}/export?ids[]={task_pk}'
+  response:
+    status_code: 200
+- name: stage
+  request:
+    method: GET
+    url: '{django_live_url}/api/projects/{pk}/export?ids[]=9999999'
+  response:
+    status_code: 200
+
+
+---
+test_name: YOLO_export_option_polygons
+strict: true
+marks:
+- usefixtures:
+  - django_live_url
+stages:
+- id: signup
+  type: ref
+- name: stage
+  request:
+    headers:
+      content-type: application/json
+    json:
+      label_config: <View><Header value="Select label and click the image to start"/><Image name="image" value="$image" /><PolygonLabels name="label" toName="image" strokeWidth="3" pointSize="small"><Label value="Airplane" background="red"/><Label value="Car" background="blue"/></PolygonLabels></View>
+    method: POST
+    url: '{django_live_url}/api/projects'
+  response:
+    save:
+      json:
+        pk: id
+    status_code: 201
+- name: stage_export
+  request:
+    method: GET
+    url: '{django_live_url}/api/projects/{pk}/export/formats'
+  response:
+    json:
+      - title: JSON
+        description: 存储在一个JSON文件中的原始JSON格式项目列表。用于导出数据集的数据和标注。它是Label Studio通用格式。
+        link: https://labelstud.io/guide/export.html#JSON
+        name: JSON
+      - title: JSON-MIN
+        description: 仅导出原始JSON格式中"from_name"和"to_name"值的项目列表。用于仅导出数据集的标注。
+        link: https://labelstud.io/guide/export.html#JSON-MIN
+        name: JSON_MIN
+      - title: CSV
+        description: 结果以逗号分隔值形式存储，其列名由“from_name”和“to_name”字段的值指定。
+        link: https://labelstud.io/guide/export.html#CSV
+        name: CSV
+      - title: TSV
+        description: 结果存储在以制表符分隔的表格文件中，列名由"from_name"和"to_name"的值指定。
+        link: https://labelstud.io/guide/export.html#TSV
+        name: TSV
+      - title: COCO
+        description: COCO数据集用于目标检测和图像分割任务（包含多边形和矩形）的常用机器学习格式。
+        link: https://labelstud.io/guide/export.html#COCO
+        tags:
+        - 图像分割
+        - 目标检测
+        - 关键点
+        name: COCO
+      - title: 带图像的COCO
+        description: 已下载图像的COCO格式。
+        link: https://labelstud.io/guide/export.html#COCO
+        tags:
+        - 图像分割
+        - 目标检测
+        - 关键点
+        name: COCO_WITH_IMAGES
+      - title: YOLO
+        description: 为每个图像文件都创建了一个流行的TXT格式。每个txt文件包含对应图像文件的标注信息，即物体类别、物体坐标、高度和宽度。
+        link: https://labelstud.io/guide/export.html#YOLO
+        tags:
+        - 图像分割
+        - 目标检测
+        - 关键点
+        name: YOLO
+      - title: 带图像的YOLO
+        description: 已下载图片的YOLO格式。
+        link: https://labelstud.io/guide/export.html#YOLO
+        tags:
+        - 图像分割
+        - 目标检测
+        - 关键点
+        name: YOLO_WITH_IMAGES
+      - title: YOLOv8 OBB
+        description: 为每个图像文件都创建了一个流行的TXT格式。每个txt文件包含对应图像文件的标注。YOLO OBB格式通过其四个角点的坐标来指定框，坐标在0到1之间归一化，因此可以导出旋转的对象。
+        link: https://labelstud.io/guide/export.html#YOLO
+        tags:
+        - 图像分割
+        - 目标检测
+        name: YOLO_OBB
+      - title: YOLOv8 OBB with Images
+        description: 已下载包含图像的YOLOv8 OBB格式。
+        link: https://labelstud.io/guide/export.html#YOLO
+        tags:
+        - 图像分割
+        - 目标检测
+        name: YOLO_OBB_WITH_IMAGES
+      - title: CONLL2003
+        description: CoNLL-2003命名实体识别挑战赛中使用的流行格式。
+        link: https://labelstud.io/guide/export.html#CONLL2003
+        tags:
+        - 序列标注
+        - 文本标记
+        - 命名实体识别
+        name: CONLL2003
+        disabled: true
+      - title: Pascal VOC XML
+        description: 用于目标检测和多边形图像分割任务的常用XML格式。
+        link: https://labelstud.io/guide/export.html#Pascal-VOC-XML
+        tags:
+        - 图像分割
+        - 目标检测
+        name: VOC
+        disabled: true
+      - title: 将Brush标签转换为NumPy
+        description: 将您的画笔标签导出为NumPy二维数组。每个标签输出为一张图像。
+        link: https://labelstud.io/guide/export.html#Brush-labels-to-NumPy-amp-PNG
+        tags:
+        - 图像分割
+        name: BRUSH_TO_NUMPY
+        disabled: true
+      - title: 将笔刷标签转换为PNG
+        description: 将您的笔刷标签导出为PNG图像。每个标签输出为一张图像。
+        link: https://labelstud.io/guide/export.html#Brush-labels-to-NumPy-amp-PNG
+        tags:
+        - 图像分割
+        name: BRUSH_TO_PNG
+        disabled: true
+      - title: ASR Manifest
+        description: 导出音频转录标签，作为 NVIDIA NeMo 模型所期望的 JSON 清单格式用于自动语音识别。
+        link: https://labelstud.io/guide/export.html#ASR-MANIFEST
+        tags:
+        - 语音识别
+        name: ASR_MANIFEST
+        disabled: true
+      - title: "将标签转化为COCO"
+        description: "将您的画笔标签导出为COCO格式，用于分割任务。将RLE编码的掩码转换为COCO多边形。"
+        link: "https://labelstud.io/guide/export.html#COCO"
+        tags:
+          - "图像分割"
+          - "画笔标注"
+        name: "BRUSH_TO_COCO"
+        disabled: true
+
+
+    status_code: 200
+
+
+---
+test_name: mig_export
+strict: false
+marks:
+- usefixtures:
+  - django_live_url
+stages:
+- id: signup
+  type: ref
+- name: stage
+  request:
+    headers:
+      content-type: application/json
+    json:
+      label_config:
+        <View>
+          <Image name="image" valueList="$images"/>
+            <RectangleLabels name="labels" toName="image">
+              <Label value="Cat"/>
+              <Label value="Dog"/>
+            </RectangleLabels>
+        </View>
+    method: POST
+    url: '{django_live_url}/api/projects'
+  response:
+    save:
+      json:
+        pk: id
+    status_code: 201
+- name: stage_export
+  request:
+    method: GET
+    url: '{django_live_url}/api/projects/{pk}/export/formats'
+  response:
+    strict:
+      - json:list_any_order
+    json:
+      - title: 'JSON'
+        description: !anystr
+        link: 'https://labelstud.io/guide/export.html#JSON'
+        name: 'JSON'
+      - title: 'JSON-MIN'
+        description: !anystr
+        link: 'https://labelstud.io/guide/export.html#JSON-MIN'
+        name: 'JSON_MIN'
+      - title: 'CSV'
+        description: !anystr
+        link: 'https://labelstud.io/guide/export.html#CSV'
+        name: 'CSV'
+      - title: 'TSV'
+        description: !anystr
+        link: 'https://labelstud.io/guide/export.html#TSV'
+        name: 'TSV'
+      - title: 'COCO'
+        description: !anystr
+        link: 'https://labelstud.io/guide/export.html#COCO'
+        tags: ['图像分割', '目标检测']
+        name: 'COCO'
+        disabled: true
+      - title: 'YOLO'
+        description: !anystr
+        link: 'https://labelstud.io/guide/export.html#YOLO'
+        tags: ['图像分割', '目标检测']
+        name: 'YOLO'
+        disabled: true
+      - title: 'YOLOv8 OBB'
+        description: !anystr
+        link: 'https://labelstud.io/guide/export.html#YOLO'
+        tags: ['图像分割', '目标检测']
+        name: 'YOLO_OBB'
+        disabled: true
+      - title: 'CONLL2003'
+        description: !anystr
+        link: 'https://labelstud.io/guide/export.html#CONLL2003'
+        tags: ['序列标注', '文本标记', '命名实体识别']
+        name: 'CONLL2003'
+        disabled: true
+      - title: 'Pascal VOC XML'
+        description: !anystr
+        link: 'https://labelstud.io/guide/export.html#Pascal-VOC-XML'
+        tags: ['图像分割', '目标检测']
+        name: 'VOC'
+        disabled: true
+      - title: '将Brush标签转换为NumPy'
+        description: !anystr
+        link: 'https://labelstud.io/guide/export.html#Brush-labels-to-NumPy-amp-PNG'
+        tags: ['图像分割']
+        name: 'BRUSH_TO_NUMPY'
+        disabled: true
+      - title: '将笔刷标签转换为PNG'
+        description: !anystr
+        link: 'https://labelstud.io/guide/export.html#Brush-labels-to-NumPy-amp-PNG'
+        tags: ['图像分割']
+        name: 'BRUSH_TO_PNG'
+        disabled: true
+      - title: 'ASR Manifest'
+        description: !anystr
+        link: 'https://labelstud.io/guide/export.html#ASR-MANIFEST'
+        tags: ['语音识别']
+        name: 'ASR_MANIFEST'
+        disabled: true
+    status_code: 200

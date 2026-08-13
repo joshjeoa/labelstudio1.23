@@ -1,0 +1,25 @@
+title: 响应选择
+type: community
+group: Conversational AI
+image: /static/templates/response-selection.png
+details: <h1>Collect chatbot training data by selecting next dialogue response</h1>
+config: |
+  <View>
+    <Paragraphs name="prg" value="$humanMachineDialogue" layout="dialogue" />
+    <Header value="选择回复" />
+    <View style="display: flex;">
+      <View>
+      <Text name="resp1" value="$respone" />
+      <Text name="resp2" value="$resptwo" />
+      <Text name="resp3" value="$respthree" />
+      </View>
+      <View style="padding: 50px;">
+      <Choices name="resp" toName="prg" required="true">
+        <Choice value="1" />
+        <Choice value="2" />
+        <Choice value="3" />
+      </Choices>
+      </View>
+    </View>
+  </View>
+

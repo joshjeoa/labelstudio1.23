@@ -1,0 +1,101 @@
+title: "用于RLHF的人类偏好收集"
+type: community
+group: Generative AI
+order: 2
+image: /static/templates/generative-pairwise-human-preference.png
+details: |
+  <h1>Gather comparison data to establish human preferences for model-generated responses.</h1>
+  <dl>
+    <dt>Industry Applications</dt>
+    <dd>AI alignment, chatbot optimization, conversational AI improvement, content generation fine-tuning, customer service AI, educational AI tutoring, creative writing AI, code assistant optimization, AI safety research, responsible AI development, LLM evaluation, human-AI collaboration</dd>
+    <dt>Associated Models</dt>
+    <dd>RLHF, reward modeling, preference learning, pairwise comparison, constitutional AI</dd>
+    <dt>Domain Terminology</dt>
+    <dd>gen AI, human feedback, preference elicitation, reward signal, alignment research, value learning</dd>
+  </dl>
+config: |
+  <View className="root">
+    <Style>
+      .root {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: 'Roboto',
+          sans-serif;
+        line-height: 1.6;
+        background-color: #f0f0f0;
+      }
+
+      .container {
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      .prompt {
+        padding: 20px;
+        background-color: #0084ff;
+        color: #ffffff;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      .answers {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 20px;
+      }
+
+      .answer-box {
+        flex-basis: 49%;
+        padding: 20px;
+        background-color: rgba(44, 62, 80, 0.9);
+        color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 3px 10px 0 rgba(0, 0, 0, 0.1);
+      }
+
+      .answer-box p {
+        word-wrap: break-word;
+      }
+
+      .answer-box:hover {
+        background-color: rgba(52, 73, 94, 0.9);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .lsf-richtext__line:hover {
+        background: unset;
+      }
+
+      .answer-box .lsf-object {
+        padding: 20px
+      }
+    </Style>
+    <View className="container">
+      <View className="prompt">
+        <Text name="prompt" value="$prompt" />
+      </View>
+      <View className="answers">
+        <Pairwise name="comparison" toName="answer1,answer2"
+                  selectionStyle="background-color: #27ae60; box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.2); border: 2px solid #2ecc71; cursor: pointer; transition: all 0.3s ease;" />
+        <View className="answer-box">
+          <Text name="answer1" value="$answer1" />
+        </View>
+        <View className="answer-box">
+          <Text name="answer2" value="$answer2" />
+        </View>
+      </View>
+    </View>
+  </View>
+  <!--{ "data" : {
+    "prompt": "在大语言模型（LLM）生成背景下，使用基于人类反馈的强化学习（RLHF）进行数据集收集的主要优势是什么？",
+    "answer1": "用于大语言模型（LLM）生成中数据集收集的人类反馈强化学习（RLHF）提供了关键优势，例如通过直接优化提升模型；通过引入人类反馈实现与人类价值观更好的对齐；以及能够基于用户交互迭代优化模型，从而产生一个更用户友好且高效的语言模型。",
+    "answer2": "在大型语言模型（LLM）生成中，使用基于人类反馈的强化学习（RLHF）进行数据集收集具有以下优势：通过针对理想结果进行优化来增强模型能力；通过引入人类反馈来提高对人类偏好的适应性；以及基于用户体验持续改进模型的机会，最终从而实现更有效响应更迅速的语言模型。"
+  }}
+  -->
