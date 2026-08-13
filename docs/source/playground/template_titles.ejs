@@ -1,0 +1,211 @@
+<%#
+  1 run label-studio start my_project,
+  2 go to /setup?template_mode=titles
+  3 copy page source code here
+%>
+
+<!-- ---------------------------------------------- --->
+<!-- Templates titles --->
+<!-- ---------------------------------------------- --->
+
+<div class="ui accordion" id="basic-templates">
+  <div class="title">
+    <i class="dropdown icon"></i> 基础配置示例
+  </div>
+  <div class="content" style="margin-top:-8px">
+    <!-- Templates categories -->
+    <div class="ui grid stackable" style="margin: 0 auto;">
+      
+        <!-- Template basic: audio -->
+        <div class="three wide column category">
+          <i class="icon sound" title="音频源"></i>
+          
+          <div class="ui item">
+              <a class="use-template no-go" href="#" data-value="48">音频分类</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="30">情感分割</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="47">说话人识别</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="32">按区域转录</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="15">完整音频转录</a>
+            </div>
+        </div>
+      
+        <!-- Template basic: image -->
+        <div class="three wide column category">
+          <i class="icon image" title="图像来源"></i>
+          
+          <div class="ui item">
+              <a class="use-template no-go" href="#" data-value="25">图像分类</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="41">边界框目标检测</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="9">刷子分割</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="33">圆形物体检测器</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="14">关键点和地标</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="34">多边形分割</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="27">多图像分类</a>
+            </div>
+        </div>
+      
+        <!-- Template basic: text -->
+        <div class="three wide column category">
+          <i class="icon font" title="文本来源"></i>
+          
+          <div class="ui item">
+              <a class="use-template no-go" href="#" data-value="39">文本分类</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="20">多分类n</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="10">命名实体识别</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="17">文本摘要</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="50">词对齐</a>
+            </div>
+        </div>
+      
+        <!-- Template basic: html -->
+        <div class="three wide column category">
+          <i class="icon code" title="HTML来源"></i>
+          
+          <div class="ui item">
+              <a class="use-template no-go" href="#" data-value="6">HTML分类</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="46">HTML NER 标签</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="43">对话与会话</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="1">评分PDF</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="4">评价网站</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="13">视频分类器</a>
+            </div>
+        </div>
+      
+        <!-- Template basic: time-series -->
+        <div class="three wide column category">
+          <i class="icon wave square" title="时间序列"></i>
+          
+          <div class="ui item">
+              <a class="use-template no-go" href="#" data-value="16">时间序列分类</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="8">导入CSV</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="2">导入JSON</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="21">扩展分割</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="23">多步骤标注</a>
+            </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="ui accordion" id="adv-templates">
+  <div class="title" onclick="$(this).next().toggle('fast'); $(this).find('.dropdown').toggleClass('active')">
+    <i class="dropdown icon"></i> 高级配置模板
+  </div>
+  <div class="content" style="margin-top:-8px">
+    <!-- Templates categories -->
+    <div class="ui grid stackable" style="margin: 0 auto;">
+      
+        <!-- Template advanced: layouts -->
+        <div class="three wide column category">
+          <i class="icon eye" title="查看布局示例"></i>
+          
+          <div class="ui item">
+              <a class="use-template no-go" href="#" data-value="35">筛选长标签列表</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="45">带滚动条的长文本</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="40">漂亮的选项</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="3">固定头部</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="28">固定左侧列</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="5">三列</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="37">两列</a>
+            </div>
+        </div>
+      
+        <!-- Template advanced: nested -->
+        <div class="three wide column category">
+          <i class="icon bullseye" title="带有条件行为的嵌套示例"></i>
+          
+          <div class="ui item">
+              <a class="use-template no-go" href="#" data-value="11">条件分类</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="19">三级分类</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="44">二级分类</a>
+            </div>
+        </div>
+      
+        <!-- Template advanced: per-region -->
+        <div class="three wide column category">
+          <i class="icon vector square" title="按区域示例"></i>
+          
+          <div class="ui item">
+              <a class="use-template no-go" href="#" data-value="29">音频区域标注</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="38">图像边界框标注</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="7">文本跨度标注</a>
+            </div>
+        </div>
+      
+        <!-- Template advanced: other -->
+        <div class="three wide column category">
+          <i class="icon archive" title="其他来源"></i>
+          
+          <div class="ui item">
+              <a class="use-template no-go" href="#" data-value="24">图像&音频&文本</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="26">成对比较</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="22">实体之间的关系</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="42">键值表</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="18">带有文本字段的表格</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="49">视频时间线分割</a>
+            </div>
+        </div>
+      
+        <!-- Template advanced: time-series -->
+        <div class="three wide column category">
+          <i class="icon wave square" title="时间序列"></i>
+          
+          <div class="ui item">
+              <a class="use-template no-go" href="#" data-value="31">导入CSV无时间</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="12">导入无头CSV</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="0">通道之间的关系</a>
+            </div><div class="ui item">
+              <a class="use-template no-go" href="#" data-value="36">与文本的关系</a>
+            </div>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
