@@ -1,0 +1,85 @@
+import { useCallback, useContext, useEffect, useState } from "react";
+import { Card, Menu } from "../../../components";
+import { Button, Dropdown } from "@humansignal/ui";
+import { ApiContext } from "../../../providers/ApiProvider";
+import { StorageSummary } from "./StorageSummary";
+import { IconEllipsisVertical } from "@humansignal/icons";
+
+export const StorageCard = ({ rootClass, target, storage, onEditStorage, onDeleteStorage, storageTypes }) => {
+  const [syncing, setSyncing] = useState(false);
+  const api = useContext(ApiContext);
+  const [storageData, setStorageData] = useState({ ...storage });
+  const [synced, setSynced] = useState(null);
+
+  const startSync = useCallback(async () => {
+    setSyncing(true);
+    setSynced(null);
+
+    const result = await api.callApi("syncStorage", {
+      params: {
+        target,
+        type: storageData.type,
+        pk: storageData.id,
+      },
+    });
+
+    if (result) {
+      setStorageData(result);
+      setSynced(result.last_sync_count);
+    }
+
+    setSyncing(false);
+  }, [storage]);
+
+  useEffect(() => {
+    setStorageData(storage);
+  }, [storage]);
+
+  const notSyncedYet = synced !== null || ["in_progress", "queued"].includes(storageData.status);
+
+  return (
+    <Card
+      header={storageData.title ?? `未命名 ${storageData.type}`}
+      extra={
+        <Dropdown.Trigger
+          align="right"
+          content={
+            <Menu size="compact" style={{ width: 110 }}>
+              <Menu.Item onClick={() => onEditStorage(storageData)}>修改</Menu.Item>
+              <Menu.Item onClick={() => onDeleteStorage(storageData)}>删除</Menu.Item>
+            </Menu>
+          }
+        >
+          <Button look="string" className="-ml-3" aria-label="Storage options">
+            <IconEllipsisVertical />
+          </Button>
+        </Dropdown.Trigger>
+      }
+    >
+      <StorageSummary
+        target={target}
+        storage={storageData}
+        className={rootClass.elem("summary").toClassName()}
+        storageTypes={storageTypes}
+      />
+      <div className={rootClass.elem("sync").toClassName()}>
+        <div className="mt-base">
+          <Button
+            look="outlined"
+            waiting={syncing}
+            onClick={startSync}
+            disabled={notSyncedYet}
+            aria-label="同步存储"
+          >
+            同步存储
+          </Button>
+          {notSyncedYet && (
+            <div className={rootClass.elem("sync-count").toClassName()}>
+              同步可能需要一些时间，请刷新页面以查看当前状态。
+            </div>
+          )}
+        </div>
+      </div>
+    </Card>
+  );
+};
