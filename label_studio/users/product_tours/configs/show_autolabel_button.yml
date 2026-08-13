@@ -1,0 +1,14 @@
+steps:
+  - target: '[data-testid="auto-labeling-button"]'
+    placement: bottom
+    title: '好消息！'
+    content: >
+      您现在可以使用提示词快速标注此项目。
+      <br/><br/>
+      点击“自动标注任务”即可在不到一分钟内设置好由大语言模型驱动的标注。
+      <br/><br/>
+      我们已为您提供了一些OpenAI额度，以便您开始使用。
+    disableBeacon: true
+    locale:
+      last: "OK"
+      skip: "不要再次显示此消息。"
